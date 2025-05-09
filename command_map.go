@@ -7,15 +7,15 @@ import (
 	"github.com/Burncoat/pokedex_project/internal/pokeapi"
 )
 
-func main() {
-	//startRepl()
-
+func commandMap() error {
 	pokeapiClient := pokeapi.NewClient()
 
 	resp, err := pokeapiClient.ListLocationAreas()
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(resp)
-	
+	fmt.Println("Location areas:")
+	for _, area := range resp.Results {
+		fmt.Printf(" - %s\n", area.Name)
+	}
 }
