@@ -53,6 +53,6 @@ func TestReap(t *testing.T) {
 
 	_, ok := cache.Get(keyOne)
 	if !ok {
-		t.Errorf("%s should have not have been reaped", keyOne)
+		t.Errorf("%s should have not been reaped", keyOne)
 	}
 }
