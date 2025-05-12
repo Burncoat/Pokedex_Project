@@ -1,21 +1,20 @@
 package main
 
 import (
-	"fmt"
-	"log"
+	"time"
 
 	"github.com/Burncoat/pokedex_project/internal/pokeapi"
 )
 
+type config struct {
+	pokeapiClient 		pokeapi.Client
+	nextLocationAreaURL *string
+	prevLocationAreaURL *string
+}
+
 func main() {
-	//startRepl()
-
-	pokeapiClient := pokeapi.NewClient()
-
-	resp, err := pokeapiClient.ListLocationAreas()
-	if err != nil {
-		log.Fatal(err)
+	cfg := config{
+		pokeapiClient: pokeapi.NewClient(time.Hour),
 	}
-	fmt.Println(resp)
-	
+	startRepl(&cfg)
 }
