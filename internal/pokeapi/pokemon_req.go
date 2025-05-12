@@ -33,6 +33,9 @@ func (c *Client) GetPokemon(pokemonName string) (Pokemon, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 399 {
+		if resp.StatusCode == 404 {
+			return Pokemon{}, fmt.Errorf("no such pokemon as %s", pokemonName)
+		}
 		return Pokemon{}, fmt.Errorf("bad status code: %v", resp.StatusCode)
 	}
 
